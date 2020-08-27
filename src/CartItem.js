@@ -13,7 +13,21 @@ class CartItem extends React.Component {
   }
 
   increaseQuantity = () => {
+    // this.state.qty += 1; does not render new value react does not know
     console.log('this.state', this.state);
+
+    // setState form I method by passing object and what to changes and react does shallow merging with state obj.
+    // this.setState({
+    //   qty: this.state.qty + 1,
+    // });
+
+    //   II method ----> using callback it does merging 
+    //   this way is used when we need previous state..like in case of qty but in case title first method works fine.
+    this.setState((prevState) => {
+      return {
+        qty: prevState.qty + 1,
+      };
+    });
   };
 
   render() {
