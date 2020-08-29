@@ -3,12 +3,12 @@ import React from 'react';
 class CartItem extends React.Component {
   constructor() {
     super();
-    this.state = {
-      price: 56000,
-      title: 'Mobile Phone',
-      qty: 1,
-      img: '',
-    };
+    // this.state = {
+    //   price: 56000,
+    //   title: 'Mobile Phone',
+    //   qty: 1,
+    //   img: '',
+    // };
     //   this.increaseQuantity = this.increaseQuantity.bind(this);
     this.testing();
   }
@@ -27,27 +27,24 @@ class CartItem extends React.Component {
         qty: 100,
       });
       // ! so here it becomes synchronous and give the updated value of state as it does not happen in normal call..
-      console.log('state', this.state); 
+      // console.log('state', this.state);
     });
 
-
     // promise.then(() => {
-        //!  here set state acts like synchronous call so calling thrice will not do batching and re render thrice..
-        // * here value of qty will be 31 after 3 setstate method call because it all will complete one by one and give updated value synchronusly.
-        //  this.setState({
-        //    qty: 10,
-        //  });
-        //  this.setState({
-        //    qty: 10,
-        //  });
-        //  this.setState({
-        //    qty: 10,
-        //  });
-         // ! so here it becomes synchronous and give the updated value of state as it does not happen in normal call..
-        //  console.log('state', this.state);
-      //  });
-
-
+    //!  here set state acts like synchronous call so calling thrice will not do batching and re render thrice..
+    // * here value of qty will be 31 after 3 setstate method call because it all will complete one by one and give updated value synchronusly.
+    //  this.setState({
+    //    qty: 10,
+    //  });
+    //  this.setState({
+    //    qty: 10,
+    //  });
+    //  this.setState({
+    //    qty: 10,
+    //  });
+    // ! so here it becomes synchronous and give the updated value of state as it does not happen in normal call..
+    //  console.log('state', this.state);
+    //  });
   }
 
   increaseQuantity = () => {
@@ -99,9 +96,12 @@ class CartItem extends React.Component {
   };
 
   render() {
-    const { price, title, qty } = this.state;
+    console.log('this.props', this.props);
+    //  console.log('this.props', this.props.product);
+    const { price, title, qty } = this.props.product;
     return (
       <div className='cart-item'>
+        {/* {this.props.jsx} */}
         <div className='left-block'>
           <img style={styles.image} />
         </div>
