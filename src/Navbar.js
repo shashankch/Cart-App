@@ -20,30 +20,27 @@ import React from 'react';
 // }
 // ** for every functional component it passes props as default as argument.
 
-const Navbar=(props) => {
-    
-    return (
-      <div style={styles.nav}>
-        <div style={styles.cartIconContainer}>
-          <img
-            style={styles.cartIcon}
-            src='https://image.flaticon.com/icons/svg/833/833314.svg'
-            alt='cart-icon'
-          />
+const Navbar = (props) => {
+  return (
+    <div style={styles.nav}>
+      <div style={styles.cartIconContainer}>
+        <img
+          style={styles.cartIcon}
+          src='https://image.flaticon.com/icons/svg/833/833314.svg'
+          alt='cart-icon'
+        />
 
-          <span style={styles.cartCount}>3</span>
-        </div>
+        <span style={styles.cartCount}>{props.count}</span>
       </div>
-    );
-
-
-}
-
+    </div>
+  );
+};
 
 const styles = {
   cartIcon: {
     height: 32,
     marginRight: 20,
+    // backgroundColor:'white'
   },
   nav: {
     height: 70,
@@ -58,9 +55,9 @@ const styles = {
   cartCount: {
     background: '#ECDA16',
     borderRadius: '50%',
-    padding: '4px 8px',
+    padding: '2px 4px',
     position: 'absolute',
-    right: 6,
+    right: 5,
     top: -9,
   },
 };
