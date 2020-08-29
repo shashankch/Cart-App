@@ -1,17 +1,19 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-  constructor() {
-    super();
-    // this.state = {
-    //   price: 56000,
-    //   title: 'Mobile Phone',
-    //   qty: 1,
-    //   img: '',
-    // };
-    //   this.increaseQuantity = this.increaseQuantity.bind(this);
-    this.testing();
-  }
+  // constructor() {
+  // super();
+
+  // this.state = {
+  //   price: 56000,
+  //   title: 'Mobile Phone',
+  //   qty: 1,
+  //   img: '',
+  // };
+  //   this.increaseQuantity = this.increaseQuantity.bind(this);
+
+  //   this.testing();
+  // }
 
   //! this method is used to show that in case of some calls like promise,ajax react does not do batching as normally it does ..
   // ! here in this setState methods call become synchronous..
@@ -96,9 +98,15 @@ class CartItem extends React.Component {
   };
 
   render() {
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     //  console.log('this.props', this.props.product);
     const { price, title, qty } = this.props.product;
+    const {
+      product,
+      onIncreaseQuantity,
+      onDecreaseQuantity,
+      onDeleteProduct,
+    } = this.props;
     return (
       <div className='cart-item'>
         {/* {this.props.jsx} */}
@@ -115,18 +123,25 @@ class CartItem extends React.Component {
               alt='increase'
               className='action-icons'
               src='https://image.flaticon.com/icons/svg/864/864378.svg'
-              onClick={this.increaseQuantity}
+              onClick={() => {
+                onIncreaseQuantity(product);
+              }}
             />
             <img
               alt='decrease'
               className='action-icons'
               src='https://image.flaticon.com/icons/svg/864/864373.svg'
-              onClick={this.decreaseQuantity}
+              onClick={() => {
+                onDecreaseQuantity(product);
+              }}
             />
             <img
               alt='delete'
               className='action-icons'
               src='https://image.flaticon.com/icons/svg/1214/1214428.svg'
+              onClick={() => {
+                onDeleteProduct(product.id);
+              }}
             />
           </div>
         </div>
