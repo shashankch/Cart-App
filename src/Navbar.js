@@ -18,7 +18,7 @@ import React from 'react';
 //     );
 //   }
 // }
-// ** for every functional component it passes props as default as argument.
+//!! for every functional component it passes props as default as argument.
 
 const Navbar = (props) => {
   return (
@@ -29,7 +29,6 @@ const Navbar = (props) => {
           src='https://image.flaticon.com/icons/svg/833/833314.svg'
           alt='cart-icon'
         />
-
         <span style={styles.cartCount}>{props.count}</span>
       </div>
     </div>
