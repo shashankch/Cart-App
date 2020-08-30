@@ -13,7 +13,7 @@ import 'firebase/firestore';
     apiKey: "",
     authDomain: "",
     databaseURL: "",
-    projectId: "cart-4866d",
+    projectId: "",
     storageBucket: "",
     messagingSenderId: "",
     appId: ""
