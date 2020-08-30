@@ -22,6 +22,8 @@ class App extends React.Component {
       products: [],
       loading: true,
     };
+
+    this.db = firebase.firestore();
   }
 
   componentDidMount() {
@@ -47,26 +49,23 @@ class App extends React.Component {
     //     });
     //   });
 
-    firebase
-      .firestore()
-      .collection('products')
-      .onSnapshot((snapshot) => {
-        console.log(snapshot);
+    this.db.collection('products').onSnapshot((snapshot) => {
+      console.log(snapshot);
 
-        snapshot.docs.map((doc) => {
-          console.log(doc.data());
-        });
-        const products = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          data['id'] = doc.id;
-
-          return data;
-        });
-        this.setState({
-          products,
-          loading: false,
-        });
+      snapshot.docs.map((doc) => {
+        console.log(doc.data());
       });
+      const products = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        data['id'] = doc.id;
+
+        return data;
+      });
+      this.setState({
+        products,
+        loading: false,
+      });
+    });
   }
 
   handleIncreaseQuantity = (product) => {
@@ -129,11 +128,41 @@ class App extends React.Component {
     return cartTotal;
   };
 
+  addProduct = () => {
+    this.db
+      .collection('products')
+      .add({
+        img:
+          'https://images.unsplash.com/flagged/photo-1572609239482-d3a83f976aa0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80',
+        price: 53000,
+        qty: 3,
+        title: 'LED TV',
+      })
+      .then((docRef) => {
+        console.log('Product has been added', docRef);
+      })
+      .catch((error) => {
+        console.log('Error', error);
+      });
+  };
+
   render() {
     const { products, loading } = this.state;
     return (
       <div className='App'>
         <Navbar count={this.getCartCount()} />
+        <button
+          onClick={this.addProduct}
+          style={{
+            margin: 10,
+            padding: 10,
+            fontSize: 20,
+            border: 0,
+            cursor: 'pointer',
+          }}
+        >
+          Add a Product
+        </button>
         <Cart
           products={products}
           onIncreaseQuantity={this.handleIncreaseQuantity}
